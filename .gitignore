@@ -1,0 +1,21 @@
+**/*.log
+**/.DS_Store
+**/.Trashes
+**/*.code-workspace
+**/*.idea
+*.pyc
+__pycache__/
+*.swp
+**/*.env
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+**/Pipfile.lock
+/venv/
+/practice4/data/*.csv
+/practice4/jars/mysql-connector-java-8.0.25.jar
+output
+
+practice5/output_report/
+practice5/streaming-job-checkpoint*/
