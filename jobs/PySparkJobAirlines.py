@@ -10,14 +10,14 @@ The task is to build a summary table about all airlines containing the input dat
 """
 
 
-def process(spark, flights_path, airlines_path, result_path):
+def process(spark, flights_path_input, airlines_path_input, result_path_input):
     """
     Main process of task
 
     :param spark: SparkSession
-    :param flights_path: path to data with flights
-    :param airlines_path: path to data with c airlines
-    :param result_path: path to result of data manipulation
+    :param flights_path_input: path to data with flights
+    :param airlines_path_input: path to data with c airlines
+    :param result_path_input: path to result of data manipulation
     """
 
     # schema flights input data
@@ -65,8 +65,8 @@ def process(spark, flights_path, airlines_path, result_path):
         StructField("AIRLINE", StringType())
     ])
 
-    df_flights = spark.read.schema(df_schema_flight).parquet(flights_path)
-    df_airlines = spark.read.schema(df_schema_airlines).parquet(airlines_path)
+    df_flights = spark.read.schema(df_schema_flight).parquet(flights_path_input)
+    df_airlines = spark.read.schema(df_schema_airlines).parquet(airlines_path_input)
 
     df_flights.registerTempTable("flights")
     df_airlines.registerTempTable("airlines")
@@ -104,7 +104,7 @@ def process(spark, flights_path, airlines_path, result_path):
     )
 
     ds_result.show(truncate=False, n=100000)
-    ds_result.write.mode('overwrite').parquet(result_path)
+    ds_result.write.mode('overwrite').parquet(result_path_input)
 
 
 def main(flights_path, airlines_path, result_path):
